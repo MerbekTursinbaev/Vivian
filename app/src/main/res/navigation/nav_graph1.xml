@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph1.xml"
+    app:startDestination="@id/orderFragment2">
+
+    <fragment
+        android:id="@+id/orderFragment2"
+        android:name="com.example.instagram.retrofit.ui.order.OrderFragment"
+        android:label="OrderFragment" >
+        <action
+            android:id="@+id/action_orderFragment2_to_orderFragmentSave"
+            app:destination="@id/orderFragmentSave" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderFragmentSave"
+        android:name="com.example.instagram.retrofit.ui.order.OrderFragmentSave"
+        android:label="OrderFragmentSave" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+</navigation>
