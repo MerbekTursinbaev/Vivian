@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/purple_500">
+    android:background="@drawable/vivianfon">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#000000"/>
+        android:src="@drawable/vivianlogo"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -78,6 +78,6 @@
         app:layout_constraintEnd_toEndOf="@+id/tvPassword"
         app:layout_constraintStart_toStartOf="@+id/tvPassword"
         android:layout_marginBottom="30dp"
-        android:backgroundTint="#00E5FF"/>
+        android:backgroundTint="#CD54E3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

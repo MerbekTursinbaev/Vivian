@@ -1,27 +1,33 @@
 package com.example.instagram.retrofit.ui.order.basket
 
 import com.example.instagram.data.json.catagory.Catalog
-import com.example.instagram.data.json.orders.Order
 
-class Basket(product: Catalog) {
+class Basket() {
 
-    var id = product.id
-    var price = product.price
-    var count = product.count
+    var basket: MutableList<Catalog> = mutableListOf()
 
-    var product : MutableList<Catalog> = mutableListOf()
-
-    fun addOrder() {
-        product.forEach {
-            if (it.id == id) {
-                count++
-            } else{
-                product.add(it)
-            }
+    fun addOrder(product: Catalog, onDone: (product: Catalog) -> Unit) {
+        val count = basket.find { it.id == product.id }
+        if (count == null) {
+            basket.add(product)
+            onDone.invoke(product)
+        } else {
+            val index = basket.indexOf(count)
+            basket[index].count++
+            onDone.invoke(basket[index])
         }
     }
 
-    fun onRemoved() {
-
+    fun onRemove(product: Catalog, onDone: (product: Catalog) -> Unit) {
+        val count = basket.find { it.id == product.id }
+        val index = basket.indexOf(count)
+        basket[index].count--
+        onDone.invoke(basket[index])
     }
+
+    fun getProductCount(product: Catalog) : Int {
+        val count = basket.find { it.id == product.id }
+        return count?.count?:0
+    }
+
 }

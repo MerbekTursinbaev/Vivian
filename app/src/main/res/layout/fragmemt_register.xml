@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/vivianfon">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageVivian"
@@ -13,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="64dp"
         android:layout_marginStart="16dp"
-        android:src="@color/black"/>
+        android:src="@drawable/vivianlogo"/>
 
     <LinearLayout
         android:id="@+id/l1"
@@ -101,5 +102,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="РЕГИСТРАЦИЯ"
-        android:textColor="#020202"/>
+        android:textColor="#D11356"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="150dp"
     android:layout_height="200dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    android:background="@drawable/item">
 
     <ImageView
         android:id="@+id/imageView"
@@ -10,7 +12,8 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tvName"
-        android:src="#000"/>
+        android:src="#000"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/tvName"
@@ -18,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="Гель для мытья посуды «Яблоко»"
-        app:layout_constraintBottom_toTopOf="@id/l1"/>
+        app:layout_constraintBottom_toTopOf="@id/l1"
+        android:layout_marginStart="8dp"
+        android:textStyle="italic"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/l1"

@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import com.example.instagram.R
 import com.example.instagram.data.resource.ResourceState
 import com.example.instagram.databinding.FragmentOrderBinding
+import com.example.instagram.retrofit.ui.dialog.DialogAdapter
+import com.example.instagram.retrofit.ui.dialog.OrderDialog
+import com.example.instagram.retrofit.ui.order.basket.Basket
 import com.example.instagram.retrofit.ui.order.catalog.OrderCatalogAdapter
 import com.example.instagram.retrofit.ui.order.catalog.OrderCatalogViewModel
 import com.example.instagram.retrofit.ui.order.category.OrderCategoryAdapter
@@ -24,6 +27,8 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
     private val mAdapterCatalog = OrderCatalogAdapter()
     private var mAdapterCategory = OrderCategoryAdapter()
 
+    var basket = Basket()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentOrderBinding.bind(view)
@@ -35,9 +40,31 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
         mAdapterCategory.setOnItemClickListener {
             viewModelCatalog.getCatalog(it)
         }
-
         viewModelCategory.getCategory()
+        viewModelCategory()
+        viewModelCatalog()
 
+        mAdapterCatalog.onPlusClick = { it ->
+            basket.addOrder(it, onDone = {
+                mAdapterCatalog.count = it.count
+                var count = it.count
+            })
+        }
+
+        mAdapterCatalog.onMinusClick = { it ->
+            basket.onRemove(it, onDone = {
+                mAdapterCatalog.count = it.count
+                var count = it.count
+            })
+        }
+
+        binding.floatingActionButton.setOnClickListener {
+            val dialog = OrderDialog(requireContext(), basket.basket )
+            dialog.show()
+        }
+    }
+
+    private fun viewModelCategory() {
         viewModelCategory.getCategoryOrder.observe(viewLifecycleOwner, {
             when (it.status) {
                 ResourceState.LOADING -> {
@@ -52,10 +79,11 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
                 }
             }
         })
-
-        viewModelCatalog.getCatalogOrder.observe(viewLifecycleOwner,{
-            when(it.status) {
-                ResourceState.LOADING-> {
+    }
+    private fun viewModelCatalog() {
+        viewModelCatalog.getCatalogOrder.observe(viewLifecycleOwner, {
+            when (it.status) {
+                ResourceState.LOADING -> {
                     binding.progressBar.isVisible = true
                 }
                 ResourceState.SUCCESS -> {

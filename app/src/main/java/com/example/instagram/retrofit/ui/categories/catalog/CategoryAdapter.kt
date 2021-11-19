@@ -22,20 +22,20 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         fun populateModel(category: Category) {
             itemView.tvName.text = category.name
             itemView.tvDescription.text = category.description
-
             itemView.setOnClickListener {
-               onClick.invoke(category.id)
+                onClick.invoke(category.id)
             }
         }
     }
 
-    private var onClick: (id:Int) -> Unit = {}
-    fun setOnItemClickListener(onClick:(id: Int )-> Unit) {
+    private var onClick: (id: Int) -> Unit = {}
+    fun setOnItemClickListener(onClick: (id: Int) -> Unit) {
         this.onClick = onClick
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item,parent,false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
         return ViewHolder(view)
     }
 
